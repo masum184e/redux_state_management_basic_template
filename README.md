@@ -150,6 +150,7 @@ npm run dev
 
 # STRUCTURE
 
+```
 ├─ redux
 │  ├─ store.js
 │  ├─ features
@@ -174,3 +175,4 @@ npm run dev
 ├─ package.json
 ├─ preview.png
 ├─ vercel.json
+```
