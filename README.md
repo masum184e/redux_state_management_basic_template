@@ -10,6 +10,12 @@
 
 [Install Node On Your Device](https://nodejs.org/)
 
+## Installation
+
+```
+npm install @reduxjs/toolkit react-redux
+```
+
 ## How to Run
 
 ```
@@ -19,11 +25,6 @@ npm install
 npm run dev
 ```
 
-## Installation Added
-
-```
-npm install @reduxjs/toolkit react-redux
-```
 ## Explaination
 
 <p> We bassically need 5 different term:</p>
