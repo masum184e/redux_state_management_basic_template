@@ -181,4 +181,5 @@ npm run dev
 ├─ package.json
 ├─ preview.png
 ├─ vercel.json
+└─ vite.config.js
 ```
