@@ -27,7 +27,7 @@ npm run dev
 
 ## Explaination
 
-<p> We bassically need 5 different term:</p>
+<p> We bassically need 5 different component:</p>
 
 1. **provider:**
 
@@ -154,7 +154,7 @@ npm run dev
 
     export default Child
 
-## STRUCTURE
+## Structure
 
 ```
 ├─ redux
