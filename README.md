@@ -10,12 +10,6 @@
 
 [Install Node On Your Device](https://nodejs.org/)
 
-## Installation
-
-```
-npm install @reduxjs/toolkit react-redux
-```
-
 ## How to Run
 
 ```
@@ -25,13 +19,19 @@ npm install
 npm run dev
 ```
 
+## Redux Installation
+
+```
+npm install @reduxjs/toolkit react-redux
+```
+
 ## Explaination
 
 <p> We bassically need 5 different component:</p>
 
 1. **provider:**
 
-   It wraps your React application and provides the Redux store to all components in the application. It accepts a `store` prop, which is the Redux store you created using `createStore`. By wrapping your entire application with `Provider`, you make the Redux store available to all components in your React app.
+   It wraps your React application and provides the Redux store to all components in the application. It accepts a `store` prop, which is the Redux store you created using `configureStore`. By wrapping your entire application with `Provider`, you make the Redux store available to all components in your React app.
 
    ```jsx
    import React from 'react'
@@ -50,7 +50,7 @@ npm run dev
 
 2. **store:**
 
-    The Redux store is a single source of truth for the state of your application. It holds the entire state tree of your application. The store provides methods to get the current state, dispatch actions, and subscribe to changes. The store is typically created once at the root of your application.
+    The Redux store is a single source of truth for the state of your application. It holds the entire state tree of your application.
 
    ```jsx
     import { configureStore } from '@reduxjs/toolkit'
@@ -58,15 +58,15 @@ npm run dev
     import nameReducer from './features/name/nameSlice'
 
     export default configureStore({
-    reducer: {
-        counter: counterReducer,
-        name: nameReducer
-    }
+      reducer: {
+          counter: counterReducer,
+          name: nameReducer
+      }
     })
 
 3. **slice:**
 
-    `slice` is a collection of Redux reducer logic and actions for a single feature of your application. It helps to organize your Redux code by grouping related reducer logic and actions together. It define the logic of how state should change. It automatically generates action creators and action types based on the reducers you provide. Slices simplify the process of defining reducers and actions in Redux.
+    `slice` is a collection of Redux reducer logic and actions for a single feature of your application. It helps to organize your Redux code by grouping related reducer logic and actions together. It define the logic of how state should change.
 
    ```jsx
     import { createSlice } from '@reduxjs/toolkit'
@@ -99,11 +99,11 @@ npm run dev
     const count = useSelector(state => state.counter.value)
     const name = useSelector(state => state.name.value)
     return (
-        <>
+      <>
         <h1 style={{ textAlign: "center" }}>Hello Redux</h1>
         <h2>I&apos;m from App, my name {name} & value {count}</h2>
         <SuperParent />
-        </>
+      </>
     )
     }
 
@@ -121,7 +121,7 @@ npm run dev
     const Child = () => {
     const dispatch = useDispatch()
     return (
-        <>
+      <>
         <div>
             <h5>I&apos;m from Child</h5>
         </div>
@@ -139,7 +139,7 @@ npm run dev
             Decrement
             </button>
             <button
-            aria-label="Decrement value"
+            aria-label="Increment value"
             onClick={() => dispatch(incrementByAmount(5))}
             >
             Increment By Amount
@@ -148,7 +148,7 @@ npm run dev
         <div style={{marginTop:"5px"}}>
             <input type="text" name="" id="" onChange={(event) => { dispatch(changeName(event.target.value)) }} />
         </div>
-        </>
+      </>
     )
     }
 
@@ -157,29 +157,37 @@ npm run dev
 ## Structure
 
 ```
+├─ public
+│  └─ images                  - store images
+│
 ├─ redux
-│  ├─ store.js
-│  ├─ features
+│  ├─ store.js                - sets up the Redux store, combining all the reducers and applying any middleware.
+│  └─ features
 |     ├─ counter
-|     |  ├─ counterSlice.js
+|     |  └─ counterSlice.js   - contain slices of counter state
 |     |
-|     ├─ name
-|     |  ├─ nameSlice.js
+|     └─ name
+|        └─ nameSlice.js      - contain slices of counter state
 │
 ├─ src
-│  ├─ App.jsx
-│  ├─ Child.jsx
-│  ├─ Parent.jsx
-│  ├─ SuperParent.jsx
-│  └─ main.jsx
+│  ├─ App.jsx                 - main application component that typically includes routing and other high-level logic. It use selector funtionalities
+│  ├─ Child.jsx               - component that use dispatch
+│  ├─ Parent.jsx              - component that help to increase tree size
+│  ├─ SuperParent.jsx         - component that help to increase tree size
+│  └─ main.jsx                - entry point file where the React application is rendered and the Redux provider is set up.
 │
-├─ .eslintrc.cjs
-├─ .gitignore
-├─ README.md
-├─ index.html
-├─ package-lock.json
-├─ package.json
-├─ preview.png
-├─ vercel.json
-└─ vite.config.js
+├─ .eslintrc.cjs              - configuration for eslint
+├─ .gitignore                 - store details about ingnored file by git
+├─ README.md                  - serve a details documentation
+├─ index.html                 - main HTML file for the application. It typically includes a <div id="root"></div> where your React app will be mounted. Vite injects the necessary scripts into this file.
+├─ package-lock.json          - contains metadata about dependencies, scripts, and other configurations
+├─ package.json               - contains metadata about dependencies, scripts, and other configurations.
+├─ preview.png                - preview image
+├─ vercel.json                - configuration for vercel
+└─ vite.config.js             - configuration for vite
 ```
+
+## Features
+__Update Counter:__ It allows the user to increase/decrease the counter value by 1 as well as increase the counter value by a specific amount. It is typically used to track and display incremental changes.
+
+__Decrement Counter:__ It lets the user update the name value to a new string. It's useful for scenarios where dynamic updates to a displayed name are required.
