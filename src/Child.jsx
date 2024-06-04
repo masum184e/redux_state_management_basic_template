@@ -23,7 +23,7 @@ const Child = () => {
           Decrement
         </button>
         <button
-          aria-label="Decrement value"
+          aria-label="Increment value"
           onClick={() => dispatch(incrementByAmount(5))}
         >
           Increment By Amount
